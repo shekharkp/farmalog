@@ -1,2 +1,2 @@
 # farmalog
- App which helps farmers to rent agricultural equipment.
+ Blog application for farmers to share their experiences.
