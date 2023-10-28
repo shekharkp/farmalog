@@ -1,2 +1,2 @@
 # farmalog
- Blog application for farmers to share their experiences.
+ Blog application for agriculture community.
