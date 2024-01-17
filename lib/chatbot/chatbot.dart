@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'chatbotapi.dart';
 
@@ -10,8 +12,8 @@ class Chatbot extends StatefulWidget {
 }
 
 class _ChatbotState extends State<Chatbot> {
-  List<Message> msg = [Message('r', "Hello Shekhar!!!"),];
-  TextEditingController _chatbot_controller = TextEditingController();
+  List<Message> msg = [Message('r', "Hello, How can i help?"),];
+  final TextEditingController _chatbot_controller = TextEditingController();
 
   void sendMessage(String message)
   {
@@ -48,11 +50,11 @@ class _ChatbotState extends State<Chatbot> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffe4e2e5),
+        backgroundColor:const Color(0xffe4e2e5),
         appBar: AppBar(
-          backgroundColor: Color(0xffe4e2e5),
+          backgroundColor:const Color(0xffe4e2e5),
           automaticallyImplyLeading: false,
-          title: Text('Chatbot',style: TextStyle(color: Color(0xFF333c3a),fontWeight: FontWeight.bold,fontSize: 25),),
+          title:const Text('Chatbot',style: TextStyle(color: Color(0xFF333c3a),fontWeight: FontWeight.bold,fontSize: 25),),
           centerTitle: true,
           elevation: 0,
         ),
@@ -62,14 +64,14 @@ class _ChatbotState extends State<Chatbot> {
             reverse: true,
             child: AnimatedList(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics:const NeverScrollableScrollPhysics(),
               initialItemCount: msg.length,
               key: UniqueKey(),
-              padding: EdgeInsets.only(top: 10, bottom: 70),
+              padding:const EdgeInsets.only(top: 10, bottom: 70),
               itemBuilder: (context, index,animation) {
                 return Container(
                   padding:
-                      EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
+                      const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
                   child: Align(
                     alignment: msg[index].message_type == "r"
                         ? Alignment.topLeft
@@ -78,13 +80,13 @@ class _ChatbotState extends State<Chatbot> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: msg[index].message_type == "r"
-                            ? Color(0xFFc4cfdd)
-                            : Color(0xFF333c3a),
+                            ? const Color(0xFFc4cfdd)
+                            :const Color(0xFF333c3a),
                       ),
-                      padding: EdgeInsets.all(16),
+                      padding:const EdgeInsets.all(16),
                       child: Text(
                         msg[index].message,
-                        style: msg[index].message_type == 'r'?TextStyle(color: Color(0xFF333c3a)):TextStyle(color: Colors.white),
+                        style: msg[index].message_type == 'r'?const TextStyle(color: Color(0xFF333c3a)):const TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
@@ -108,9 +110,9 @@ class _ChatbotState extends State<Chatbot> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: "Enter Massage",
+                          hintText: "Enter Message",
                           contentPadding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                              const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                           borderSide: BorderSide.none),
@@ -119,12 +121,12 @@ class _ChatbotState extends State<Chatbot> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   FloatingActionButton(
-                    backgroundColor: Color(0xFFc4cfdd),
-                    child: Icon(
+                    backgroundColor:const Color(0xFFc4cfdd),
+                    child:const Icon(
                       Icons.send_rounded,
                       color: Color(0xFF333c3a),
                     ),
@@ -132,7 +134,9 @@ class _ChatbotState extends State<Chatbot> {
                       setState((){
                         sendMessage(_chatbot_controller.text);
                         responceMessage(_chatbot_controller.text);
-                      });
+                        _chatbot_controller.clear();
+                      },
+                      );
                     },
                   )
                 ],
